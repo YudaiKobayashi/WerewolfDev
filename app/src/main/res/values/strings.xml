@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Werewolf Dev</string>
+    <string name="new_game">New Game</string>
+    <string name="saved_sessions">Saved Sessions</string>
+    <string name="how_to_play">How To Play</string>
+
+    <string name="number_of_players">Number Of Players</string>
+    <string name="default_number_of_players">3</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="next">Next</string>
+
+    <string name="player_names">Player Names</string>
+
+    <string name="players">Players</string>
+    <string name="roles">Roles</string>
+
+    <string name="set_roles">Set Roles</string>
+    <string name="werewolf">Werewolf</string>
+    <string name="bigwolf">Bigwolf</string>
+    <string name="madman">Madman</string>
+    <string name="fortuneteller">Fortuneteller</string>
+    <string name="thief">Thief</string>
+    <string name="hunter">Hunter</string>
+    <string name="hangedman">Hangedman</string>
+    <string name="villager">Villager</string>
+
+    <string name="stand_by">Stand By</string>
+    <string name="start">Start</string>
+    <string name="back">Back</string>
+
+    <string name="conversation">Conversation</string>
+    <string name="vote">Vote</string>
+    <string name="execution">Execution</string>
+
+    <string name="result">Result</string>
+    <string name="votes">Votes</string>
+    <string name="score">Score</string>
+</resources>

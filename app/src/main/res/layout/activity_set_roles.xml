@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_set_roles"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="yudai.werewolfdev.SetRoles">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/set_roles"
+            android:textSize="@dimen/large_text" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/werewolf" />
+
+            <TextView
+                android:id="@+id/werewolf"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/werewolf_minus"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center"
+                android:text="@string/minus" />
+
+            <Button
+                android:id="@+id/werewolf_plus"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center"
+                android:text="@string/plus" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/bigwolf" />
+
+            <TextView
+                android:id="@+id/bigwolf"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/bigwolf_minus"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center"
+                android:text="@string/minus" />
+
+            <Button
+                android:id="@+id/bigwolf_plus"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center"
+                android:text="@string/plus" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/madman" />
+
+            <TextView
+                android:id="@+id/madman"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/madman_minus"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center"
+                android:text="@string/minus" />
+
+            <Button
+                android:id="@+id/madman_plus"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center"
+                android:text="@string/plus" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/fortuneteller" />
+
+            <TextView
+                android:id="@+id/fortuneteller"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/fortuneteller_minus"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center"
+                android:text="@string/minus" />
+
+            <Button
+                android:id="@+id/fortuneteller_plus"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center"
+                android:text="@string/plus" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/thief" />
+
+            <TextView
+                android:id="@+id/thief"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/thief_minus"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center"
+                android:text="@string/minus" />
+
+            <Button
+                android:id="@+id/thief_plus"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center"
+                android:text="@string/plus" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/hunter" />
+
+            <TextView
+                android:id="@+id/hunter"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/hunter_minus"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center"
+                android:text="@string/minus" />
+
+            <Button
+                android:id="@+id/hunter_plus"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center"
+                android:text="@string/plus" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/hangedman" />
+
+            <TextView
+                android:id="@+id/hangedman"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/hangedman_minus"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center"
+                android:text="@string/minus" />
+
+            <Button
+                android:id="@+id/hangedman_plus"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center"
+                android:text="@string/plus" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/villager" />
+
+            <TextView
+                android:id="@+id/villager"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center" />
+
+            <Space
+                android:id="@+id/villager_minus"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center"
+                android:text="@string/minus" />
+
+            <Space
+                android:id="@+id/villager_plus"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:gravity="center"
+                android:text="@string/plus" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/next" />
+
+    </LinearLayout>
+
+</ScrollView>
