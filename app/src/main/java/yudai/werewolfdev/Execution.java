@@ -10,8 +10,9 @@ import java.util.ArrayList;
 
 public class Execution extends AppCompatActivity {
 
+    private final ArrayList<Integer> votes = new ArrayList<>();
     private ArrayList<String> players, roles;
-    private ArrayList<Integer> score, votes = new ArrayList<>();
+    private ArrayList<Integer> score;
     private int stealing, stolen, answer = -1;
     private boolean answered = false;
 
@@ -52,7 +53,7 @@ public class Execution extends AppCompatActivity {
 
     private void execute() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.execution));
+        builder.setTitle(getString(R.string.title_execution));
         builder.setSingleChoiceItems(players.toArray(new String[players.size()]), answer,
                 new DialogInterface.OnClickListener() {
                     @Override

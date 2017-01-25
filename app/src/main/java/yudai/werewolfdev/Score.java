@@ -138,11 +138,12 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void areYouReady() {
+        status = false;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Are You Ready?");
-        builder.setMessage("Are you ready to start new game?");
-        builder.setNegativeButton("Cancel", null);
-        builder.setPositiveButton("OK",
+        builder.setTitle(getString(R.string.title_start)); // builder.setTitle("Are You Ready?");
+        builder.setMessage(getString(R.string.message_start)); // builder.setMessage("Are you ready to start new game?");
+        builder.setNegativeButton(getString(R.string.cancel), null);
+        builder.setPositiveButton(getString(R.string.ok),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

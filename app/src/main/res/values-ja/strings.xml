@@ -1,0 +1,99 @@
+<resources>
+    <string name="app_name">ワンナイト人狼 Dev.</string>
+    <string name="new_game">新しいゲーム</string>
+    <string name="saved_sessions">保存したゲーム</string>
+    <string name="how_to_play">遊び方</string>
+
+    <string name="number_of_players">プレイヤーの人数</string>
+    <string name="default_number_of_players">3</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="next">次へ</string>
+
+    <string name="player_names">プレイヤーの名前</string>
+    <string name="empty_name">空欄があります!</string>
+    <string name="duplicated_names">重複があります!</string>
+
+    <string name="players">プレイヤー</string>
+    <string name="roles">役職</string>
+
+    <string name="set_roles">役職を設定</string>
+    <string name="werewolf">人狼</string>
+    <string name="bigwolf">大狼</string>
+    <string name="madman">狂人</string>
+    <string name="fortuneteller">占い師</string>
+    <string name="thief">怪盗</string>
+    <string name="hunter">狩人</string>
+    <string name="hangedman">吊人</string>
+    <string name="villager">村人</string>
+
+    <string name="stand_by">準備完了</string>
+    <string name="start">ゲームを始める</string>
+    <string name="back">戻る</string>
+    <string name="title_start">ゲーム開始</string>
+    <string name="message_start">準備は良いですか?</string>
+    <string name="cancel">戻る</string>
+    <string name="ok">はい</string>
+
+
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+
+    <string name="title_confirm">プレイヤーを確認</string>
+    <string name="message_confirm">あなたは %s ですか?</string>
+
+    <string name="title_check_role">役職を確認</string>
+    <string name="message_check_role">あなたは %s です.</string>
+
+    <string name="title_werewolf">仲間を確認</string>
+    <string name="title_bigwolf">仲間と墓地を確認</string>
+    <string name="player_is_werewolf">%s は人狼です.</string>
+    <string name="player_is_bigwolf">%s は大狼です.</string>
+    <string name="alone_werewolf">仲間はいません.</string>
+
+    <string name="in_grave">墓地には以下の役職があります:</string>
+
+    <string name="title_madman">狂人</string>
+    <string name="message_madman">あなたは狂人です.\nあなたは狂人です</string>
+
+    <string name="title_fortuneteller">占い</string>
+    <string name="check_graves">墓地を確認</string>
+    <string name="player_is_role">%1$s は %2$s です.</string>
+
+    <string name="title_thief">役職を盗む</string>
+    <string name="do_nothing">何もしない</string>
+    <string name="nothing_done">何もしませんでした.</string>
+    <string name="player_was_role_you_are_role">%1$s は %2$s でした.\nあなたは今 %3$s になりました.</string>
+
+    <string name="title_hunter">怪盗</string>
+    <string name="message_hunter">あなたは怪盗です.\nあなたは怪盗です.</string>
+
+    <string name="title_hangedman">吊人</string>
+    <string name="message_hangedman">あなたは吊人です.\nあなたは吊人です.</string>
+
+    <string name="title_villager">村人</string>
+    <string name="message_villager">あなたは村人です.\nあなたは村人です.</string>
+
+
+    <string name="conversation">話し合い</string>
+    <string name="vote">投票</string>
+    <string name="title_vote">投票</string>
+    <string name="message_vote">投票しますか?</string>
+    <string name="execution">公開処刑</string>
+    <string name="title_execution">公開処刑</string>
+    <string name="message_execution">公開処刑しますか?</string>
+    <string name="back_disabled">戻るボタンは使えません.</string>
+    <string name="finish_conversation">話し合いを終了してください.</string>
+
+    <string name="title_dead">犠牲者</string>
+    <string name="no_dead">誰も犠牲になりませんでした.</string>
+    <string name="player_is_dead">%s が犠牲になりました.</string>
+    <string name="title_hunting">%s , 誰を狩りますか?</string>
+    <string name="villagers_win">村人チームの勝利!</string>
+    <string name="werewolves_win">人狼チームの勝利!</string>
+    <string name="hangedman_win">吊人チームの勝利!</string>
+
+    <string name="result">結果発表</string>
+    <string name="votes">投票</string>
+    <string name="score">得点 </string>
+</resources>

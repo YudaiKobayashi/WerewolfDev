@@ -59,9 +59,9 @@ public class PlayerNames extends AppCompatActivity implements View.OnClickListen
             case R.id.next:
                 players = getPlayersArrayList();
                 if (containEmpty(players)) {
-                    Toast.makeText(this, "Empty Name(s)!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.empty_name), Toast.LENGTH_SHORT).show();
                 } else if (duplicated(players)) {
-                    Toast.makeText(this, "Duplicated Names!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.duplicated_names), Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(this, SetRoles.class);
                     intent.putExtra("numberOfPlayers", numberOfPlayers);

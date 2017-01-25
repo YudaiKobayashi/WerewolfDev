@@ -79,10 +79,10 @@ public class Conversation extends AppCompatActivity implements View.OnClickListe
 
             case R.id.vote:
                 new AlertDialog.Builder(this)
-                        .setTitle(getString(R.string.vote))
-                        .setMessage("Are you ready to vote?")
-                        .setNegativeButton("Cancel", null)
-                        .setPositiveButton("OK",
+                        .setTitle(getString(R.string.title_vote))
+                        .setMessage(getString(R.string.message_vote))
+                        .setNegativeButton(getString(R.string.cancel), null)
+                        .setPositiveButton(getString(R.string.ok),
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -94,10 +94,10 @@ public class Conversation extends AppCompatActivity implements View.OnClickListe
 
             case R.id.execution:
                 new AlertDialog.Builder(this)
-                        .setTitle(getString(R.string.execution))
-                        .setMessage("Are you ready to execute?")
-                        .setNegativeButton("Cancel", null)
-                        .setPositiveButton("OK",
+                        .setTitle(getString(R.string.title_execution))
+                        .setMessage(getString(R.string.message_execution))
+                        .setNegativeButton(getString(R.string.cancel), null)
+                        .setPositiveButton(getString(R.string.ok),
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -111,7 +111,7 @@ public class Conversation extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(this, "Back button is disabled.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.back_disabled), Toast.LENGTH_SHORT).show();
     }
 
     private void countDown(long count) {
@@ -125,7 +125,7 @@ public class Conversation extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onFinish() {
-                makeToast("Finish conversation.");
+                makeToast(getString(R.string.finish_conversation));
             }
         }.start();
     }

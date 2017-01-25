@@ -66,10 +66,10 @@ public class PlayRoles extends AppCompatActivity {
                 checkRole();
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Confirm");
-                builder.setMessage(String.format("Are you really %s?", players.get(counter)));
-                builder.setNegativeButton("No", null);
-                builder.setPositiveButton("Yes",
+                builder.setTitle(getString(R.string.title_confirm));
+                builder.setMessage(String.format(getString(R.string.message_confirm), players.get(counter)));
+                builder.setNegativeButton(getString(R.string.no), null);
+                builder.setPositiveButton(getString(R.string.yes),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -105,9 +105,9 @@ public class PlayRoles extends AppCompatActivity {
             playRole();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Check Your Role");
-            builder.setMessage(String.format("You are %s.", roles.get(counter)));
-            builder.setPositiveButton("Yes",
+            builder.setTitle(getString(R.string.title_check_role));
+            builder.setMessage(String.format(getString(R.string.message_check_role), role2string(roles.get(counter))));
+            builder.setPositiveButton(getString(R.string.yes),
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -159,9 +159,9 @@ public class PlayRoles extends AppCompatActivity {
 
     private void playWerewolf() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Check Werewolves");
+        builder.setTitle(getString(R.string.title_werewolf)); // builder.setTitle("Check Werewolves");
         builder.setMessage(showWerewolves());
-        builder.setPositiveButton("Yes",
+        builder.setPositiveButton(getString(R.string.yes),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -187,9 +187,9 @@ public class PlayRoles extends AppCompatActivity {
 
     private void playBigwolf() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Check Werewolves");
+        builder.setTitle(getString(R.string.title_bigwolf));
         builder.setMessage(showWerewolves() + "\n\n" + showGraves());
-        builder.setPositiveButton("Yes",
+        builder.setPositiveButton(getString(R.string.yes),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -215,9 +215,9 @@ public class PlayRoles extends AppCompatActivity {
 
     private void playMadman() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Madman");
-        builder.setMessage("Madman.");
-        builder.setPositiveButton("Yes",
+        builder.setTitle(getString(R.string.title_madman));
+        builder.setMessage(R.string.message_madman);
+        builder.setPositiveButton(getString(R.string.yes),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -256,10 +256,10 @@ public class PlayRoles extends AppCompatActivity {
                     items.add(players.get(i));
                 }
             }
-            items.add("Check Graves");
+            items.add(getString(R.string.check_graves)); // items.add("Check Graves");
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(getString(R.string.fortuneteller));
+            builder.setTitle(getString(R.string.title_fortuneteller));
             builder.setSingleChoiceItems(items.toArray(new String[items.size()]), answer,
                     new DialogInterface.OnClickListener() {
                         @Override
@@ -267,7 +267,7 @@ public class PlayRoles extends AppCompatActivity {
                             answer = i;
                         }
                     });
-            builder.setPositiveButton("Yes",
+            builder.setPositiveButton(getString(R.string.yes),
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -299,12 +299,12 @@ public class PlayRoles extends AppCompatActivity {
         if (index == players.size()) {
             message = showGraves();
         } else {
-            message = String.format("%s is %s.", players.get(index), roles.get(index));
+            message = String.format(getString(R.string.player_is_role), players.get(index), role2string(roles.get(index))); // String.format("%s is %s.", players.get(index), roles.get(index));
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Tell Fortune");
+        builder.setTitle(getString(R.string.title_fortuneteller));
         builder.setMessage(message);
-        builder.setPositiveButton("Yes",
+        builder.setPositiveButton(getString(R.string.yes),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -347,10 +347,10 @@ public class PlayRoles extends AppCompatActivity {
                     items.add(players.get(i));
                 }
             }
-            items.add("Do Nothing");
+            items.add(getString(R.string.do_nothing)); // items.add("Do Nothing");
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Steal Role");
+            builder.setTitle(getString(R.string.title_thief));
             builder.setSingleChoiceItems(items.toArray(new String[items.size()]), answer,
                     new DialogInterface.OnClickListener() {
                         @Override
@@ -358,7 +358,7 @@ public class PlayRoles extends AppCompatActivity {
                             answer = i;
                         }
                     });
-            builder.setPositiveButton("Yes",
+            builder.setPositiveButton(getString(R.string.yes),
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -389,15 +389,16 @@ public class PlayRoles extends AppCompatActivity {
         String message;
 
         if (stolen == players.size()) {
-            message = "Nothing to be done.";
+            message = getString(R.string.nothing_done); // "Nothing Done.";
             stealing = -1;
         } else {
-            message = String.format("%s was %s.\nYou are now %s.", players.get(stolen), roles.get(stolen), roles.get(stolen));
+            message = String.format(getString(R.string.player_was_role_you_are_role), players.get(stolen), role2string(roles.get(stolen)), role2string(roles.get(stolen)));
+            // String.format("%s was %s.\nYou are now %s.", players.get(stolen), roles.get(stolen), roles.get(stolen));
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Steal Role");
+        builder.setTitle(getString(R.string.title_thief));
         builder.setMessage(message);
-        builder.setPositiveButton("Yes",
+        builder.setPositiveButton(getString(R.string.yes),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -425,9 +426,9 @@ public class PlayRoles extends AppCompatActivity {
 
     private void playHunter() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Hunter");
-        builder.setMessage("Hunter");
-        builder.setPositiveButton("Yes",
+        builder.setTitle(getString(R.string.title_hunter));
+        builder.setMessage(getString(R.string.message_hunter));
+        builder.setPositiveButton(getString(R.string.yes),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -453,9 +454,9 @@ public class PlayRoles extends AppCompatActivity {
 
     private void playHangedman() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Hangedman");
-        builder.setMessage("Hangedman");
-        builder.setPositiveButton("Yes",
+        builder.setTitle(getString(R.string.title_hangedman));
+        builder.setMessage(getString(R.string.message_hangedman));
+        builder.setPositiveButton(getString(R.string.yes),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -481,9 +482,9 @@ public class PlayRoles extends AppCompatActivity {
 
     private void playVillager() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Villager");
-        builder.setMessage("Villager");
-        builder.setPositiveButton("Yes",
+        builder.setTitle(getString(R.string.title_villager));
+        builder.setMessage(getString(R.string.message_villager));
+        builder.setPositiveButton(getString(R.string.yes),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -514,23 +515,45 @@ public class PlayRoles extends AppCompatActivity {
                 if (result.length() != 0) {
                     result += "\n";
                 }
-                result += String.format("%s is werewolf.", players.get(i));
+                result += String.format(getString(R.string.player_is_werewolf), players.get(i));
             }
             if (i != counter && roles.get(i).equals("bigwolf")) {
                 if (result.length() != 0) {
                     result += "\n";
                 }
-                result += String.format("%s is bigwolf.", players.get(i));
+                result += String.format(getString(R.string.player_is_bigwolf), players.get(i));
             }
         }
         if (result.length() == 0) {
-            return "Alone werewolf.";
+            return getString(R.string.alone_werewolf);
         }
         return result;
     }
 
     private String showGraves() {
-        return "In the grave:" + "\n" + roles.get(players.size()) + "\n" + roles.get(players.size() + 1);
+        return getString(R.string.in_grave) + "\n" + role2string(roles.get(players.size())) + "\n" + role2string(roles.get(players.size() + 1));
     }
 
+    private String role2string(String role) {
+        switch (role) {
+            case "werewolf":
+                return getString(R.string.werewolf);
+            case "bigwolf":
+                return getString(R.string.bigwolf);
+            case "madman":
+                return getString(R.string.madman);
+            case "fortuneteller":
+                return getString(R.string.fortuneteller);
+            case "thief":
+                return getString(R.string.thief);
+            case "hunter":
+                return getString(R.string.hunter);
+            case "hangedman":
+                return getString(R.string.hangedman);
+            case "villager":
+                return getString(R.string.villager);
+            default:
+                return "Error!";
+        }
+    }
 }

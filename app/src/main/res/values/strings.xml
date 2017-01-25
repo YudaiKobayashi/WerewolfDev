@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Werewolf Dev</string>
+    <string name="app_name">Werewolf Dev.</string>
     <string name="new_game">New Game</string>
     <string name="saved_sessions">Saved Sessions</string>
     <string name="how_to_play">How To Play</string>
@@ -11,6 +11,8 @@
     <string name="next">Next</string>
 
     <string name="player_names">Player Names</string>
+    <string name="empty_name">Empty Name(s)!</string>
+    <string name="duplicated_names">Duplicated Names!</string>
 
     <string name="players">Players</string>
     <string name="roles">Roles</string>
@@ -28,10 +30,68 @@
     <string name="stand_by">Stand By</string>
     <string name="start">Start</string>
     <string name="back">Back</string>
+    <string name="title_start">Are You Ready?</string>
+    <string name="message_start">Are you ready to start new game?</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="title_confirm">Confirm</string>
+    <string name="message_confirm">Are you really %s?</string>
+
+    <string name="title_check_role">Check Your Role</string>
+    <string name="message_check_role">You are %s.</string>
+
+    <string name="title_werewolf">Check Werewolves</string>
+    <string name="title_bigwolf">Check Werewolves and Graves</string>
+    <string name="player_is_werewolf">%s is Werewolf.</string>
+    <string name="player_is_bigwolf">%s is Bigwolf.</string>
+    <string name="alone_werewolf">Alone Werewolf.</string>
+
+    <string name="in_grave">In the grave:</string>
+
+    <string name="title_madman">Madman</string>
+    <string name="message_madman">You are Madman.</string>
+
+    <string name="title_fortuneteller">Tell Fortune</string>
+    <string name="check_graves">Check Graves</string>
+    <string name="player_is_role">%1$s is %2$s.</string>
+
+    <string name="title_thief">Steal Role</string>
+    <string name="do_nothing">Do Nothing</string>
+    <string name="nothing_done">Nothing Done.</string>
+    <string name="player_was_role_you_are_role">%1$s was %2$s.\nYou are now %3$s.</string>
+
+    <string name="title_hunter">Hunter</string>
+    <string name="message_hunter">You are Hunter.</string>
+
+    <string name="title_hangedman">Hangedman</string>
+    <string name="message_hangedman">You are Hangedman</string>
+
+    <string name="title_villager">Villager</string>
+    <string name="message_villager">You are Villager.</string>
+
 
     <string name="conversation">Conversation</string>
     <string name="vote">Vote</string>
+    <string name="title_vote">Vote</string>
+    <string name="message_vote">Are you ready to vote?</string>
     <string name="execution">Execution</string>
+    <string name="title_execution">Execution</string>
+    <string name="message_execution">Are you ready to execute?</string>
+    <string name="back_disabled">Back button is disabled.</string>
+    <string name="finish_conversation">Finish conversation.</string>
+
+    <string name="title_dead">Dead</string>
+    <string name="no_dead">Nobody is dead.</string>
+    <string name="player_is_dead">%s is dead.</string>
+    <string name="title_hunting">%s, who do you want to hunt?</string>
+    <string name="villagers_win">Villagers Win!</string>
+    <string name="werewolves_win">Werewolves Win!</string>
+    <string name="hangedman_win">Hangedman Win!</string>
 
     <string name="result">Result</string>
     <string name="votes">Votes</string>

@@ -28,7 +28,7 @@ public class StandBy extends AppCompatActivity implements View.OnClickListener {
             addTextView((LinearLayout) findViewById(R.id.players), players.get(i));
         }
         for (int i = 0; i < roles.size(); i++) {
-            addTextView((LinearLayout) findViewById(R.id.roles), roles.get(i));
+            addTextView((LinearLayout) findViewById(R.id.roles), role2string(roles.get(i)));
         }
 
         findViewById(R.id.start).setOnClickListener(this);
@@ -55,13 +55,36 @@ public class StandBy extends AppCompatActivity implements View.OnClickListener {
         layout.addView(textView);
     }
 
+    private String role2string(String role) {
+        switch (role) {
+            case "werewolf":
+                return getString(R.string.werewolf);
+            case "bigwolf":
+                return getString(R.string.bigwolf);
+            case "madman":
+                return getString(R.string.madman);
+            case "fortuneteller":
+                return getString(R.string.fortuneteller);
+            case "thief":
+                return getString(R.string.thief);
+            case "hunter":
+                return getString(R.string.hunter);
+            case "hangedman":
+                return getString(R.string.hangedman);
+            case "villager":
+                return getString(R.string.villager);
+            default:
+                return "Error!";
+        }
+    }
+
     private void areYouReady() {
         status = false;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Are You Ready?");
-        builder.setMessage("Are you ready to start new game?");
-        builder.setNegativeButton("Cancel", null);
-        builder.setPositiveButton("OK",
+        builder.setTitle(getString(R.string.title_start)); // builder.setTitle("Are You Ready?");
+        builder.setMessage(getString(R.string.message_start)); // builder.setMessage("Are you ready to start new game?");
+        builder.setNegativeButton(getString(R.string.no), null);
+        builder.setPositiveButton(getString(R.string.ok),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

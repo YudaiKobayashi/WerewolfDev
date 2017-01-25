@@ -9,7 +9,6 @@ import android.widget.TextView;
 public class NumberOfPlayers extends AppCompatActivity implements View.OnClickListener {
 
     private TextView numberOfPlayers;
-    private int minPlayers = 3, maxPlayers = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +34,8 @@ public class NumberOfPlayers extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
+        int minPlayers = 3, maxPlayers = 10;
+
         switch (view.getId()) {
             case R.id.minus:
                 minusButton(minPlayers);

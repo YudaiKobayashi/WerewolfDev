@@ -66,7 +66,7 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(this, "Back button is disabled.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.back_disabled), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -136,19 +136,19 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
     private void showDead() {
         String message = "";
         if (deadIndex.size() == players.size()) {
-            message = "No one is dead.";
+            message = getString(R.string.no_dead);
         } else {
             for (int i = 0; i < deadIndex.size(); i++) {
                 if (message.length() != 0) {
                     message += "\n";
                 }
-                message += String.format("%s is dead.", players.get(deadIndex.get(i)));
+                message += String.format(getString(R.string.player_is_dead), players.get(deadIndex.get(i)));
             }
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Dead");
+        builder.setTitle(getString(R.string.title_dead));
         builder.setMessage(message);
-        builder.setPositiveButton("Yes",
+        builder.setPositiveButton(getString(R.string.yes),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -189,7 +189,7 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
             }
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(String.format("%s, who do you want to hunt?", players.get(hunter)));
+            builder.setTitle(String.format(getString(R.string.title_hunting), players.get(hunter)));
             builder.setSingleChoiceItems(items.toArray(new String[items.size()]), answer,
                     new DialogInterface.OnClickListener() {
                         @Override
@@ -197,7 +197,7 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
                             answer = choice;
                         }
                     });
-            builder.setPositiveButton("Yes",
+            builder.setPositiveButton(getString(R.string.yes),
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -231,13 +231,13 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
     private void showResult() {
         String result;
         if (hanged()) {
-            result = "Hangedman Win!";
+            result = getString(R.string.hangedman_win);
             winner = 3;
         } else if (werewolfIsDead()) {
-            result = "Villagers Win!";
+            result = getString(R.string.villagers_win);
             winner = 1;
         } else {
-            result = "Werewolves Win!";
+            result = getString(R.string.werewolves_win);
             winner = 2;
         }
 
@@ -280,7 +280,7 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
         }
         // roles
         for (int i = 0; i < roles.size(); i++) {
-            addTextView((LinearLayout) findViewById(R.id.roles), roles.get(i));
+            addTextView((LinearLayout) findViewById(R.id.roles), role2string(roles.get(i)));
         }
         // votes
         for (int i = 0; i < votes.size(); i++) {
@@ -356,5 +356,28 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
         ));
         imageView.setImageResource(image);
         layout.addView(imageView);
+    }
+
+    private String role2string(String role) {
+        switch (role) {
+            case "werewolf":
+                return getString(R.string.werewolf);
+            case "bigwolf":
+                return getString(R.string.bigwolf);
+            case "madman":
+                return getString(R.string.madman);
+            case "fortuneteller":
+                return getString(R.string.fortuneteller);
+            case "thief":
+                return getString(R.string.thief);
+            case "hunter":
+                return getString(R.string.hunter);
+            case "hangedman":
+                return getString(R.string.hangedman);
+            case "villager":
+                return getString(R.string.villager);
+            default:
+                return "Error!";
+        }
     }
 }
