@@ -64,10 +64,10 @@ public class Vote extends AppCompatActivity {
                 vote();
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Confirm");
-                builder.setMessage(String.format("Are you really %s?", players.get(counter)));
-                builder.setNegativeButton("No", null);
-                builder.setPositiveButton("Yes",
+                builder.setTitle(getString(R.string.title_confirm));
+                builder.setMessage(String.format(getString(R.string.message_confirm), players.get(counter)));
+                builder.setNegativeButton(getString(R.string.no), null);
+                builder.setPositiveButton(getString(R.string.yes),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -116,7 +116,7 @@ public class Vote extends AppCompatActivity {
                         answer = i;
                     }
                 });
-        builder.setPositiveButton("Yes",
+        builder.setPositiveButton(getString(R.string.yes),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
