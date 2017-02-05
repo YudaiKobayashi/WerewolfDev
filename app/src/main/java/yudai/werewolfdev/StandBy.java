@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class StandBy extends AppCompatActivity implements View.OnClickListener {
 
-    private ArrayList<String> players = new ArrayList<>(), roles = new ArrayList<>();
+    private ArrayList<String> players, roles;
     private boolean status = false;
 
     @Override
@@ -110,6 +110,7 @@ public class StandBy extends AppCompatActivity implements View.OnClickListener {
         Intent intent = new Intent(this, PlayRoles.class);
         intent.putStringArrayListExtra("players", players);
         intent.putStringArrayListExtra("roles", roles);
+        intent.putStringArrayListExtra("roles_default", roles);
         intent.putIntegerArrayListExtra("score", score);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

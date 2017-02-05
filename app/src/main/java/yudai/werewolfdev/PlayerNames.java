@@ -19,7 +19,7 @@ import java.util.Set;
 public class PlayerNames extends AppCompatActivity implements View.OnClickListener {
 
     private int numberOfPlayers, index[];
-    private ArrayList<String> players = new ArrayList<>();
+    private ArrayList<String> players;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

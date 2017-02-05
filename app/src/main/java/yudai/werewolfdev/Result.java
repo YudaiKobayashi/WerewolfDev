@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 public class Result extends AppCompatActivity implements View.OnClickListener {
 
-    private ArrayList<String> players = new ArrayList<>(), roles = new ArrayList<>();
-    private ArrayList<Integer> score = new ArrayList<>(), votes = new ArrayList<>(), deadIndex;
+    private ArrayList<String> players, roles, roles_default;
+    private ArrayList<Integer> score, votes, deadIndex;
     private int stealing = -1, stolen = -1, winner, status = 0, answer = -1;
     // in resulting(); status = 0: thievishness,
     // 1: showDead, 2: hunting, 3: showResult.
@@ -32,6 +32,7 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
         if (savedInstanceState != null) {
             players = savedInstanceState.getStringArrayList("players");
             roles = savedInstanceState.getStringArrayList("roles");
+            roles_default = savedInstanceState.getStringArrayList("roles_default");
             score = savedInstanceState.getIntegerArrayList("score");
             votes = savedInstanceState.getIntegerArrayList("votes");
             deadIndex = savedInstanceState.getIntegerArrayList("deadIndex");
@@ -42,6 +43,7 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
         } else {
             players = getIntent().getStringArrayListExtra("players");
             roles = getIntent().getStringArrayListExtra("roles");
+            roles_default = getIntent().getStringArrayListExtra("roles_default");
             score = getIntent().getIntegerArrayListExtra("score");
             votes = getIntent().getIntegerArrayListExtra("votes");
             stealing = getIntent().getIntExtra("stealing", 0);
@@ -55,6 +57,7 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
     protected void onSaveInstanceState(Bundle outState) {
         outState.putStringArrayList("players", players);
         outState.putStringArrayList("roles", roles);
+        outState.putStringArrayList("roles_default", roles_default);
         outState.putIntegerArrayList("score", score);
         outState.putIntegerArrayList("votes", votes);
         outState.putIntegerArrayList("deadIndex", deadIndex);
@@ -76,6 +79,7 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
                 Intent intent = new Intent(this, Score.class);
                 intent.putStringArrayListExtra("players", players);
                 intent.putStringArrayListExtra("roles", roles);
+                intent.putStringArrayListExtra("roles_default", roles_default);
                 intent.putIntegerArrayListExtra("score", score);
                 intent.putExtra("winner", winner);
                 // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -102,6 +106,9 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
             if (voted.get(i).equals(max)) {
                 deadIndex.add(i);
             }
+        }
+        if (deadIndex.size() == players.size()) {
+            deadIndex.clear();
         }
     }
 
@@ -135,7 +142,7 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
 
     private void showDead() {
         String message = "";
-        if (deadIndex.size() == players.size()) {
+        if (deadIndex.size() == 0) {
             message = getString(R.string.no_dead);
         } else {
             for (int i = 0; i < deadIndex.size(); i++) {

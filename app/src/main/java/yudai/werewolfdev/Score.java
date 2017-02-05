@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class Score extends AppCompatActivity implements View.OnClickListener {
 
-    private ArrayList<String> players, roles, added;
+    private ArrayList<String> players, roles, roles_default, added;
     private ArrayList<Integer> score;
     private int winner;
     private boolean played = false, status = false;
@@ -26,6 +26,7 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
         if (savedInstanceState != null) {
             players = savedInstanceState.getStringArrayList("players");
             roles = savedInstanceState.getStringArrayList("roles");
+            roles_default = savedInstanceState.getStringArrayList("roles_default");
             added = savedInstanceState.getStringArrayList("added");
             score = savedInstanceState.getIntegerArrayList("score");
             winner = savedInstanceState.getInt("winner");
@@ -33,6 +34,7 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
         } else {
             players = getIntent().getStringArrayListExtra("players");
             roles = getIntent().getStringArrayListExtra("roles");
+            roles_default = getIntent().getStringArrayListExtra("roles_default");
             score = getIntent().getIntegerArrayListExtra("score");
             winner = getIntent().getIntExtra("winner", 0);
         }
@@ -49,6 +51,7 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
     protected void onSaveInstanceState(Bundle outState) {
         outState.putStringArrayList("players", players);
         outState.putStringArrayList("roles", roles);
+        outState.putStringArrayList("roles_default", roles_default);
         outState.putStringArrayList("added", added);
         outState.putIntegerArrayList("score", score);
         outState.putInt("winner", winner);
@@ -165,6 +168,7 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
         Intent intent = new Intent(this, PlayRoles.class);
         intent.putStringArrayListExtra("players", players);
         intent.putStringArrayListExtra("roles", roles);
+        intent.putStringArrayListExtra("roles_default", roles_default);
         intent.putIntegerArrayListExtra("score", score);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

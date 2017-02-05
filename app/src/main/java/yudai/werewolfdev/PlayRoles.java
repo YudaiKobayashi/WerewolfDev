@@ -11,8 +11,8 @@ import java.util.Collections;
 
 public class PlayRoles extends AppCompatActivity {
 
-    private ArrayList<String> players = new ArrayList<>(), roles = new ArrayList<>();
-    private ArrayList<Integer> score = new ArrayList<>();
+    private ArrayList<String> players, roles, roles_default;
+    private ArrayList<Integer> score;
     private int counter = 0, answer = -1, stealing = -1, stolen = -1;
     private boolean confirmed = false, checked = false, played = false, answered = false;
 
@@ -24,6 +24,7 @@ public class PlayRoles extends AppCompatActivity {
         if (savedInstanceState != null) {
             players = savedInstanceState.getStringArrayList("players");
             roles = savedInstanceState.getStringArrayList("roles");
+            roles_default = savedInstanceState.getStringArrayList("roles_default");
             score = savedInstanceState.getIntegerArrayList("score");
 
             counter = savedInstanceState.getInt("counter");
@@ -37,6 +38,7 @@ public class PlayRoles extends AppCompatActivity {
         } else {
             players = getIntent().getStringArrayListExtra("players");
             roles = getIntent().getStringArrayListExtra("roles");
+            roles_default = getIntent().getStringArrayListExtra("roles_default");
             score = getIntent().getIntegerArrayListExtra("score");
 
             Collections.shuffle(roles);
@@ -48,6 +50,7 @@ public class PlayRoles extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         outState.putStringArrayList("players", players);
         outState.putStringArrayList("roles", roles);
+        outState.putStringArrayList("roles_default", roles_default);
         outState.putIntegerArrayList("score", score);
 
         outState.putInt("counter", counter);
@@ -92,6 +95,7 @@ public class PlayRoles extends AppCompatActivity {
             Intent intent = new Intent(this, Conversation.class);
             intent.putStringArrayListExtra("players", players);
             intent.putStringArrayListExtra("roles", roles);
+            intent.putStringArrayListExtra("roles_default", roles_default);
             intent.putIntegerArrayListExtra("score", score);
             intent.putExtra("stealing", stealing);
             intent.putExtra("stolen", stolen);

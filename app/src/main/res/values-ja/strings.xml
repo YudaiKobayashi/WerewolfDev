@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ワンナイト人狼 Dev.</string>
+    <string name="app_name">人狼 Dev.</string>
     <string name="new_game">新しいゲーム</string>
     <string name="saved_sessions">保存したゲーム</string>
     <string name="how_to_play">遊び方</string>
@@ -65,8 +65,8 @@
     <string name="nothing_done">何もしませんでした.</string>
     <string name="player_was_role_you_are_role">%1$s は %2$s でした.\nあなたは今 %3$s になりました.</string>
 
-    <string name="title_hunter">怪盗</string>
-    <string name="message_hunter">あなたは怪盗です.\nあなたは怪盗です.</string>
+    <string name="title_hunter">狩人</string>
+    <string name="message_hunter">あなたは狩人です.\nあなたは狩人です.</string>
 
     <string name="title_hangedman">吊人</string>
     <string name="message_hangedman">あなたは吊人です.\nあなたは吊人です.</string>

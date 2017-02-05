@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +18,7 @@ import java.util.Locale;
 
 public class Conversation extends AppCompatActivity implements View.OnClickListener {
 
-    private ArrayList<String> players, roles;
+    private ArrayList<String> players, roles, roles_default;
     private ArrayList<Integer> score;
     private int stealing, stolen;
 
@@ -26,6 +29,7 @@ public class Conversation extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversation);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         findViewById(R.id.minus).setOnClickListener(this);
         findViewById(R.id.plus).setOnClickListener(this);
@@ -35,6 +39,7 @@ public class Conversation extends AppCompatActivity implements View.OnClickListe
         if (savedInstanceState != null) {
             players = savedInstanceState.getStringArrayList("players");
             roles = savedInstanceState.getStringArrayList("roles");
+            roles_default = savedInstanceState.getStringArrayList("roles_default");
             score = savedInstanceState.getIntegerArrayList("score");
             stealing = savedInstanceState.getInt("stealing");
             stolen = savedInstanceState.getInt("stolen");
@@ -43,11 +48,16 @@ public class Conversation extends AppCompatActivity implements View.OnClickListe
         } else {
             players = getIntent().getStringArrayListExtra("players");
             roles = getIntent().getStringArrayListExtra("roles");
+            roles_default = getIntent().getStringArrayListExtra("roles_default");
             score = getIntent().getIntegerArrayListExtra("score");
             stealing = getIntent().getIntExtra("stealing", 0);
             stolen = getIntent().getIntExtra("stolen", 0);
 
             countDown(180000);
+        }
+
+        for (int i = 0; i < roles_default.size(); i++) {
+            addTextView((LinearLayout) findViewById(R.id.roles), role2string(roles_default.get(i)));
         }
     }
 
@@ -55,6 +65,7 @@ public class Conversation extends AppCompatActivity implements View.OnClickListe
     protected void onSaveInstanceState(Bundle outState) {
         outState.putStringArrayList("players", players);
         outState.putStringArrayList("roles", roles);
+        outState.putStringArrayList("roles_default", roles_default);
         outState.putIntegerArrayList("score", score);
         outState.putInt("stealing", stealing);
         outState.putInt("stolen", stolen);
@@ -114,6 +125,37 @@ public class Conversation extends AppCompatActivity implements View.OnClickListe
         Toast.makeText(this, getString(R.string.back_disabled), Toast.LENGTH_SHORT).show();
     }
 
+    private void addTextView(LinearLayout layout, String text) {
+        TextView textView = new TextView(this);
+        textView.setText(text);
+        textView.setMaxLines(1);
+        textView.setGravity(Gravity.CENTER);
+        layout.addView(textView);
+    }
+
+    private String role2string(String role) {
+        switch (role) {
+            case "werewolf":
+                return getString(R.string.werewolf);
+            case "bigwolf":
+                return getString(R.string.bigwolf);
+            case "madman":
+                return getString(R.string.madman);
+            case "fortuneteller":
+                return getString(R.string.fortuneteller);
+            case "thief":
+                return getString(R.string.thief);
+            case "hunter":
+                return getString(R.string.hunter);
+            case "hangedman":
+                return getString(R.string.hangedman);
+            case "villager":
+                return getString(R.string.villager);
+            default:
+                return "Error!";
+        }
+    }
+
     private void countDown(long count) {
         timer = new CountDownTimer(count, 100) {
             @Override
@@ -135,6 +177,7 @@ public class Conversation extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this, Vote.class);
         intent.putStringArrayListExtra("players", players);
         intent.putStringArrayListExtra("roles", roles);
+        intent.putStringArrayListExtra("roles_default", roles_default);
         intent.putIntegerArrayListExtra("score", score);
         intent.putExtra("stealing", stealing);
         intent.putExtra("stolen", stolen);
@@ -147,6 +190,7 @@ public class Conversation extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this, Execution.class);
         intent.putStringArrayListExtra("players", players);
         intent.putStringArrayListExtra("roles", roles);
+        intent.putStringArrayListExtra("roles_default", roles_default);
         intent.putIntegerArrayListExtra("score", score);
         intent.putExtra("stealing", stealing);
         intent.putExtra("stolen", stolen);

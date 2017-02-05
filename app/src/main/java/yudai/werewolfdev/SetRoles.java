@@ -8,12 +8,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+
 public class SetRoles extends AppCompatActivity implements View.OnClickListener {
 
     private TextView
             werewolf, bigwolf, madman, fortuneteller, thief, hunter, hangedman, villager;
 
-    private ArrayList<String> players = new ArrayList<>();
+    private ArrayList<String> players;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

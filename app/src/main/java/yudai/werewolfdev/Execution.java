@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Execution extends AppCompatActivity {
 
     private final ArrayList<Integer> votes = new ArrayList<>();
-    private ArrayList<String> players, roles;
+    private ArrayList<String> players, roles, roles_default;
     private ArrayList<Integer> score;
     private int stealing, stolen, answer = -1;
     private boolean answered = false;
@@ -24,6 +24,7 @@ public class Execution extends AppCompatActivity {
         if (savedInstanceState != null) {
             players = savedInstanceState.getStringArrayList("players");
             roles = savedInstanceState.getStringArrayList("roles");
+            roles_default = savedInstanceState.getStringArrayList("roles_default");
             score = savedInstanceState.getIntegerArrayList("score");
             stealing = savedInstanceState.getInt("stealing");
             stolen = savedInstanceState.getInt("stolen");
@@ -32,6 +33,7 @@ public class Execution extends AppCompatActivity {
         } else {
             players = getIntent().getStringArrayListExtra("players");
             roles = getIntent().getStringArrayListExtra("roles");
+            roles_default = getIntent().getStringArrayListExtra("roles_default");
             score = getIntent().getIntegerArrayListExtra("score");
             stealing = getIntent().getIntExtra("stealing", 0);
             stolen = getIntent().getIntExtra("stolen", 0);
@@ -44,6 +46,7 @@ public class Execution extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         outState.putStringArrayList("players", players);
         outState.putStringArrayList("roles", roles);
+        outState.putStringArrayList("roles_default", roles_default);
         outState.putIntegerArrayList("score", score);
         outState.putInt("stealing", stealing);
         outState.putInt("stolen", stolen);
@@ -88,6 +91,7 @@ public class Execution extends AppCompatActivity {
         Intent intent = new Intent(this, Result.class);
         intent.putStringArrayListExtra("players", players);
         intent.putStringArrayListExtra("roles", roles);
+        intent.putStringArrayListExtra("roles_default", roles_default);
         intent.putIntegerArrayListExtra("score", score);
         intent.putIntegerArrayListExtra("votes", votes);
         intent.putExtra("stealing", stealing);
