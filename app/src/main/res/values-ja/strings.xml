@@ -84,6 +84,7 @@
     <string name="message_execution">公開処刑しますか?</string>
     <string name="back_disabled">戻るボタンは使えません.</string>
     <string name="finish_conversation">話し合いを終了してください.</string>
+    <string name="peaceful">平和村</string>
 
     <string name="title_dead">犠牲者</string>
     <string name="no_dead">誰も犠牲になりませんでした.</string>

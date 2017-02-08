@@ -84,6 +84,7 @@
     <string name="message_execution">Are you ready to execute?</string>
     <string name="back_disabled">Back button is disabled.</string>
     <string name="finish_conversation">Finish conversation.</string>
+    <string name="peaceful">Peaceful</string>
 
     <string name="title_dead">Dead</string>
     <string name="no_dead">Nobody is dead.</string>

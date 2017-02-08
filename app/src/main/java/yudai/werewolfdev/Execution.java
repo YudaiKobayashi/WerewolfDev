@@ -55,9 +55,15 @@ public class Execution extends AppCompatActivity {
     }
 
     private void execute() {
+        final ArrayList<String> items = new ArrayList<>();
+        for (int i = 0; i < players.size(); i++) {
+            items.add(players.get(i));
+        }
+        items.add(getString(R.string.peaceful));
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.title_execution));
-        builder.setSingleChoiceItems(players.toArray(new String[players.size()]), answer,
+        builder.setSingleChoiceItems(items.toArray(new String[items.size()]), answer,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -75,8 +81,12 @@ public class Execution extends AppCompatActivity {
             @Override
             public void onDismiss(DialogInterface dialogInterface) {
                 if (answered && answer != -1) {
-                    for (int i = 0; i < players.size(); i++) {
-                        votes.add(answer);
+                    if (answer == players.size()) {
+                        votes.clear();
+                    } else {
+                        for (int i = 0; i < players.size(); i++) {
+                            votes.add(answer);
+                        }
                     }
                     result();
                 } else {

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class Result extends AppCompatActivity implements View.OnClickListener {
 
     private ArrayList<String> players, roles, roles_default;
-    private ArrayList<Integer> score, votes, deadIndex;
+    private ArrayList<Integer> score, votes, deadIndex = new ArrayList<>();
     private int stealing = -1, stolen = -1, winner, status = 0, answer = -1;
     // in resulting(); status = 0: thievishness,
     // 1: showDead, 2: hunting, 3: showResult.
@@ -88,27 +88,30 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void makeDeadIndex() {
-        ArrayList<Integer> voted = new ArrayList<>();
-        for (int i = 0; i < players.size(); i++) {
-            voted.add(0);
-        }
-        for (int i = 0; i < voted.size(); i++) {
-            voted.set(votes.get(i), voted.get(votes.get(i)) + 1);
-        }
-        int max = voted.get(0);
-        for (int i = 1; i < voted.size(); i++) {
-            if (max < voted.get(i)) {
-                max = voted.get(i);
-            }
-        }
-        deadIndex = new ArrayList<>();
-        for (int i = 0; i < voted.size(); i++) {
-            if (voted.get(i).equals(max)) {
-                deadIndex.add(i);
-            }
-        }
-        if (deadIndex.size() == players.size()) {
+        if (votes.isEmpty()) {
             deadIndex.clear();
+        } else {
+            ArrayList<Integer> voted = new ArrayList<>();
+            for (int i = 0; i < players.size(); i++) {
+                voted.add(0);
+            }
+            for (int i = 0; i < voted.size(); i++) {
+                voted.set(votes.get(i), voted.get(votes.get(i)) + 1);
+            }
+            int max = voted.get(0);
+            for (int i = 1; i < voted.size(); i++) {
+                if (max < voted.get(i)) {
+                    max = voted.get(i);
+                }
+            }
+            for (int i = 0; i < voted.size(); i++) {
+                if (voted.get(i).equals(max)) {
+                    deadIndex.add(i);
+                }
+            }
+            if (deadIndex.size() == players.size()) {
+                deadIndex.clear();
+            }
         }
     }
 
@@ -240,7 +243,7 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
         if (hanged()) {
             result = getString(R.string.hangedman_win);
             winner = 3;
-        } else if (werewolfIsDead()) {
+        } else if (werewolfIsDead() || noWerewolf()) {
             result = getString(R.string.villagers_win);
             winner = 1;
         } else {
@@ -341,6 +344,15 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
             }
         }
         return false;
+    }
+
+    private boolean noWerewolf() {
+        for (int i = 0; i < players.size(); i++) {
+            if (roles.get(i).equals("werewolf") || roles.get(i).equals("bigwolf")) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void addTextView(LinearLayout layout, String text) {
