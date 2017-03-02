@@ -38,8 +38,8 @@ public class PlayerNames extends AppCompatActivity implements View.OnClickListen
         newPlayer(linearLayout, numberOfPlayers, index[numberOfPlayers - 1], EditorInfo.IME_ACTION_DONE);
 
         if (savedInstanceState != null) {
+            players = savedInstanceState.getStringArrayList("players");
             for (int i = 0; i < numberOfPlayers; i++) {
-                players = savedInstanceState.getStringArrayList("players");
                 ((EditText) findViewById(index[i])).setText(players.get(i));
             }
         }
