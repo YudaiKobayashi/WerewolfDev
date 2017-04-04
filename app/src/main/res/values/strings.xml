@@ -92,7 +92,7 @@
     <string name="title_hunting">%s, who do you want to hunt?</string>
     <string name="villagers_win">Villagers Win!</string>
     <string name="werewolves_win">Werewolves Win!</string>
-    <string name="hangedman_win">Hangedman Win!</string>
+    <string name="hangedman_win">Hangedman Wins!</string>
 
     <string name="result">Result</string>
     <string name="votes">Votes</string>
