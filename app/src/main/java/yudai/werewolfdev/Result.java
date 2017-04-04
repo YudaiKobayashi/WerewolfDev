@@ -88,7 +88,7 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void makeDeadIndex() {
-        if (votes.isEmpty()) {
+        if (votes.isEmpty()) { // peaceful
             deadIndex.clear();
         } else {
             ArrayList<Integer> voted = new ArrayList<>();
@@ -109,7 +109,7 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
                     deadIndex.add(i);
                 }
             }
-            if (deadIndex.size() == players.size()) {
+            if (deadIndex.size() == players.size()) { // peaceful
                 deadIndex.clear();
             }
         }
@@ -241,17 +241,54 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
     private void showResult() {
         String result;
         if (hanged()) {
-            result = getString(R.string.hangedman_win);
             winner = 3;
-        } else if (werewolfIsDead() || noWerewolf()) {
+        } else if (!noWerewolf()) {
+            if (!noVillager()) {
+                if (deadIndex.isEmpty()) {
+                    winner = 2;
+                } else if (werewolfIsDead()) {
+                    winner = 1;
+                } else {
+                    winner = 2;
+                }
+            } else { // no villager
+                if (werewolfIsDead()) {
+                    winner = 1;
+                } else {
+                    winner = 2;
+                }
+            }
+        } else { // no werewolf
+            if (deadIndex.isEmpty()) {
+                winner = 1;
+            } else {
+                winner = 2;
+            }
+        }
+
+        /*else if (werewolfIsDead() || noWerewolf()) {
             result = getString(R.string.villagers_win);
             winner = 1;
         } else {
             result = getString(R.string.werewolves_win);
             winner = 2;
-        }
+        }*/
 
         // result
+        switch (winner) {
+            case 1:
+                result = getString(R.string.villagers_win);
+                break;
+            case 2:
+                result = getString(R.string.werewolves_win);
+                break;
+            case 3:
+                result = getString(R.string.hangedman_win);
+                break;
+            default:
+                result = "Error!";
+        }
+
         ((TextView) findViewById(R.id.result)).setText(result);
 
         // dead
@@ -349,6 +386,18 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
     private boolean noWerewolf() {
         for (int i = 0; i < players.size(); i++) {
             if (roles.get(i).equals("werewolf") || roles.get(i).equals("bigwolf")) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean noVillager() {
+        for (int i = 0; i < players.size(); i++) {
+            if (roles.get(i).equals("fortuneteller")
+                    || roles.get(i).equals("thief")
+                    || roles.get(i).equals("hunter")
+                    || roles.get(i).equals("villager")) {
                 return false;
             }
         }
