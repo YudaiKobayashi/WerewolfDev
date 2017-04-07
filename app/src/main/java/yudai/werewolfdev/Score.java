@@ -91,7 +91,7 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
             for (int i = 0; i < players.size(); i++) {
                 if (roles.get(i).equals("werewolf")
                         || roles.get(i).equals("bigwolf")
-                        || roles.get(i).equals("madman")) {
+                        || (!noWerewolf() && roles.get(i).equals("madman"))) {
                     score.set(i, score.get(i) + 2);
                     added.set(i, "+2");
                 }
