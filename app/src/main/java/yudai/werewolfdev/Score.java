@@ -142,26 +142,26 @@ public class Score extends AppCompatActivity implements View.OnClickListener {
 
     private void areYouReady() {
         status = false;
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.title_start)); // builder.setTitle("Are You Ready?");
-        builder.setMessage(getString(R.string.message_start)); // builder.setMessage("Are you ready to start new game?");
-        builder.setNegativeButton(getString(R.string.cancel), null);
-        builder.setPositiveButton(getString(R.string.ok),
-                new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.title_start))
+                .setMessage(getString(R.string.message_start))
+                .setNegativeButton(getString(R.string.cancel), null)
+                .setPositiveButton(getString(R.string.ok),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                status = true;
+                            }
+                        })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        status = true;
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        if (status) {
+                            startGame();
+                        }
                     }
-                });
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (status) {
-                    startGame();
-                }
-            }
-        });
-        builder.create().show();
+                })
+                .show();
     }
 
     private void startGame() {

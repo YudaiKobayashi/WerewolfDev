@@ -85,19 +85,19 @@ public class SetRoles extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.werewolf_plus:
-                plusButton(werewolf, maxWerewolf(3));
+                plusButton(werewolf, maxWerewolf());
                 break;
             case R.id.werewolf_minus:
                 minusButton(werewolf, minWerewolf());
                 break;
             case R.id.bigwolf_plus:
-                plusButton(bigwolf, maxWerewolf(3));
+                plusButton(bigwolf, maxWerewolf());
                 break;
             case R.id.bigwolf_minus:
                 minusButton(bigwolf, minWerewolf());
                 break;
             case R.id.madman_plus:
-                plusButton(madman, maxWerewolf(3));
+                plusButton(madman, maxWerewolf());
                 break;
             case R.id.madman_minus:
                 minusButton(madman, 0);
@@ -155,13 +155,13 @@ public class SetRoles extends AppCompatActivity implements View.OnClickListener 
         }
     }
 
-    private int maxWerewolf(int max) {
+    private int maxWerewolf() {
         if (Integer.parseInt(werewolf.getText().toString()) +
                 Integer.parseInt(bigwolf.getText().toString()) +
                 Integer.parseInt(madman.getText().toString()) == players.size() + 1) {
             return 0;
         } else {
-            return max;
+            return 3;
         }
     }
 

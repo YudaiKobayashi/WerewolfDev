@@ -42,9 +42,6 @@
     <string name="title_confirm">Confirm</string>
     <string name="message_confirm">Are you really %s?</string>
 
-    <string name="title_check_role">Check Your Role</string>
-    <string name="message_check_role">You are %s.</string>
-
     <string name="title_werewolf">Check Werewolves</string>
     <string name="title_bigwolf">Check Werewolves and Graves</string>
     <string name="player_is_werewolf">%s is Werewolf.</string>

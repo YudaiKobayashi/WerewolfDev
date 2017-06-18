@@ -155,29 +155,29 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
                 message += String.format(getString(R.string.player_is_dead), players.get(deadIndex.get(i)));
             }
         }
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.title_dead));
-        builder.setMessage(message);
-        builder.setPositiveButton(getString(R.string.yes),
-                new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.title_dead))
+                .setMessage(message)
+                .setPositiveButton(getString(R.string.yes),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                answered = true;
+                            }
+                        })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        answered = true;
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        if (answered) {
+                            status += 1; // go to hunting()
+                            answered = false;
+                            resulting();
+                        } else {
+                            showDead();
+                        }
                     }
-                });
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (answered) {
-                    status += 1; // go to hunting()
-                    answered = false;
-                    resulting();
-                } else {
-                    showDead();
-                }
-            }
-        });
-        builder.create().show();
+                })
+                .show();
     }
 
     private void hunting() {
@@ -198,40 +198,40 @@ public class Result extends AppCompatActivity implements View.OnClickListener {
                 }
             }
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(String.format(getString(R.string.title_hunting), players.get(hunter)));
-            builder.setSingleChoiceItems(items.toArray(new String[items.size()]), answer,
-                    new DialogInterface.OnClickListener() {
+            new AlertDialog.Builder(this)
+                    .setTitle(String.format(getString(R.string.title_hunting), players.get(hunter)))
+                    .setSingleChoiceItems(items.toArray(new String[items.size()]), answer,
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int choice) {
+                                    answer = choice;
+                                }
+                            })
+                    .setPositiveButton(getString(R.string.yes),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    answered = true;
+                                }
+                            })
+                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
-                        public void onClick(DialogInterface dialogInterface, int choice) {
-                            answer = choice;
-                        }
-                    });
-            builder.setPositiveButton(getString(R.string.yes),
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            answered = true;
-                        }
-                    });
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialogInterface) {
-                    if (answered && answer != -1) {
-                        for (int i = 0; i < players.size(); i++) {
-                            if (players.get(i).equals(items.get(answer))) {
-                                deadIndex.add(i);
+                        public void onDismiss(DialogInterface dialogInterface) {
+                            if (answered && answer != -1) {
+                                for (int i = 0; i < players.size(); i++) {
+                                    if (players.get(i).equals(items.get(answer))) {
+                                        deadIndex.add(i);
+                                    }
+                                }
+                                answered = false;
+                                status += 1; // go to showResult()
+                                resulting();
+                            } else {
+                                hunting();
                             }
                         }
-                        answered = false;
-                        status += 1; // go to showResult()
-                        resulting();
-                    } else {
-                        hunting();
-                    }
-                }
-            });
-            builder.create().show();
+                    })
+                    .show();
         } else {
             status += 1; // go to showResult()
             resulting();

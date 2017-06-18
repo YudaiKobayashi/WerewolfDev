@@ -61,40 +61,40 @@ public class Execution extends AppCompatActivity {
         }
         items.add(getString(R.string.peaceful));
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.title_execution));
-        builder.setSingleChoiceItems(items.toArray(new String[items.size()]), answer,
-                new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.title_execution))
+                .setSingleChoiceItems(items.toArray(new String[items.size()]), answer,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                answer = i;
+                            }
+                        })
+                .setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                answered = true;
+                            }
+                        })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        answer = i;
-                    }
-                });
-        builder.setPositiveButton("Yes",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        answered = true;
-                    }
-                });
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (answered && answer != -1) {
-                    if (answer == players.size()) {
-                        votes.clear();
-                    } else {
-                        for (int i = 0; i < players.size(); i++) {
-                            votes.add(answer);
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        if (answered && answer != -1) {
+                            if (answer == players.size()) {
+                                votes.clear();
+                            } else {
+                                for (int i = 0; i < players.size(); i++) {
+                                    votes.add(answer);
+                                }
+                            }
+                            result();
+                        } else {
+                            execute();
                         }
                     }
-                    result();
-                } else {
-                    execute();
-                }
-            }
-        });
-        builder.create().show();
+                })
+                .show();
     }
 
     private void result() {

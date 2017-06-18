@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -104,6 +105,39 @@ public class PlayRoles extends AppCompatActivity {
         }
     }
 
+    // ImageView version
+    private void checkRole() {
+        if (checked) {
+            playRole();
+        } else {
+            ImageView imageView = new ImageView(this);
+            imageView.setImageResource(role2image(roles.get(counter)));
+            imageView.setAdjustViewBounds(true);
+
+            new AlertDialog.Builder(this)
+                    .setView(imageView)
+                    .setPositiveButton(getString(R.string.ok),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    checked = true;
+                                }
+                            })
+                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialogInterface) {
+                            if (checked) {
+                                playRole();
+                            } else {
+                                checkRole();
+                            }
+                        }
+                    })
+                    .show();
+        }
+    }
+
+    /* String version
     private void checkRole() {
         if (checked) {
             playRole();
@@ -131,6 +165,7 @@ public class PlayRoles extends AppCompatActivity {
             builder.create().show();
         }
     }
+     */
 
     private void playRole() {
         switch (roles.get(counter)) {
@@ -162,87 +197,87 @@ public class PlayRoles extends AppCompatActivity {
     }
 
     private void playWerewolf() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.title_werewolf)); // builder.setTitle("Check Werewolves");
-        builder.setMessage(showWerewolves());
-        builder.setPositiveButton(getString(R.string.yes),
-                new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.title_werewolf)) // builder.setTitle("Check Werewolves");
+                .setMessage(showWerewolves())
+                .setPositiveButton(getString(R.string.yes),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                played = true;
+                            }
+                        })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        played = true;
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        if (played) {
+                            counter += 1;
+                            confirmed = false;
+                            checked = false;
+                            played = false;
+                            confirmPlayer();
+                        } else {
+                            playWerewolf();
+                        }
                     }
-                });
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (played) {
-                    counter += 1;
-                    confirmed = false;
-                    checked = false;
-                    played = false;
-                    confirmPlayer();
-                } else {
-                    playWerewolf();
-                }
-            }
-        });
-        builder.create().show();
+                })
+                .show();
     }
 
     private void playBigwolf() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.title_bigwolf));
-        builder.setMessage(showWerewolves() + "\n\n" + showGraves());
-        builder.setPositiveButton(getString(R.string.yes),
-                new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.title_bigwolf))
+                .setMessage(showWerewolves() + "\n\n" + showGraves())
+                .setPositiveButton(getString(R.string.yes),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                played = true;
+                            }
+                        })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        played = true;
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        if (played) {
+                            counter += 1;
+                            confirmed = false;
+                            checked = false;
+                            played = false;
+                            confirmPlayer();
+                        } else {
+                            playBigwolf();
+                        }
                     }
-                });
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (played) {
-                    counter += 1;
-                    confirmed = false;
-                    checked = false;
-                    played = false;
-                    confirmPlayer();
-                } else {
-                    playBigwolf();
-                }
-            }
-        });
-        builder.create().show();
+                })
+                .show();
     }
 
     private void playMadman() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.title_madman));
-        builder.setMessage(R.string.message_madman);
-        builder.setPositiveButton(getString(R.string.yes),
-                new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.title_madman))
+                .setMessage(R.string.message_madman)
+                .setPositiveButton(getString(R.string.yes),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                played = true;
+                            }
+                        })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        played = true;
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        if (played) {
+                            counter += 1;
+                            confirmed = false;
+                            checked = false;
+                            played = false;
+                            confirmPlayer();
+                        } else {
+                            playMadman();
+                        }
                     }
-                });
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (played) {
-                    counter += 1;
-                    confirmed = false;
-                    checked = false;
-                    played = false;
-                    confirmPlayer();
-                } else {
-                    playMadman();
-                }
-            }
-        });
-        builder.create().show();
+                })
+                .create().show();
     }
 
     private void playFortuneteller() {
@@ -262,37 +297,37 @@ public class PlayRoles extends AppCompatActivity {
             }
             items.add(getString(R.string.check_graves)); // items.add("Check Graves");
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(getString(R.string.title_fortuneteller));
-            builder.setSingleChoiceItems(items.toArray(new String[items.size()]), answer,
-                    new DialogInterface.OnClickListener() {
+            new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.title_fortuneteller))
+                    .setSingleChoiceItems(items.toArray(new String[items.size()]), answer,
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    answer = i;
+                                }
+                            })
+                    .setPositiveButton(getString(R.string.yes),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    answered = true;
+                                }
+                            })
+                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            answer = i;
+                        public void onDismiss(DialogInterface dialogInterface) {
+                            if (answered && answer != -1) {
+                                int index = answer;
+                                if (index >= counter) {
+                                    index += 1;
+                                }
+                                tellFortune(index);
+                            } else {
+                                playFortuneteller();
+                            }
                         }
-                    });
-            builder.setPositiveButton(getString(R.string.yes),
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            answered = true;
-                        }
-                    });
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialogInterface) {
-                    if (answered && answer != -1) {
-                        int index = answer;
-                        if (index >= counter) {
-                            index += 1;
-                        }
-                        tellFortune(index);
-                    } else {
-                        playFortuneteller();
-                    }
-                }
-            });
-            builder.create().show();
+                    })
+                    .show();
         }
     }
 
@@ -305,33 +340,33 @@ public class PlayRoles extends AppCompatActivity {
         } else {
             message = String.format(getString(R.string.player_is_role), players.get(index), role2string(roles.get(index))); // String.format("%s is %s.", players.get(index), roles.get(index));
         }
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.title_fortuneteller));
-        builder.setMessage(message);
-        builder.setPositiveButton(getString(R.string.yes),
-                new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.title_fortuneteller))
+                .setMessage(message)
+                .setPositiveButton(getString(R.string.yes),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                played = true;
+                            }
+                        })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        played = true;
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        if (played) {
+                            counter += 1;
+                            confirmed = false;
+                            checked = false;
+                            answered = false;
+                            played = false;
+                            answer = -1;
+                            confirmPlayer();
+                        } else {
+                            tellFortune(index);
+                        }
                     }
-                });
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (played) {
-                    counter += 1;
-                    confirmed = false;
-                    checked = false;
-                    answered = false;
-                    played = false;
-                    answer = -1;
-                    confirmPlayer();
-                } else {
-                    tellFortune(index);
-                }
-            }
-        });
-        builder.create().show();
+                })
+                .show();
     }
 
     private void playThief() {
@@ -353,39 +388,39 @@ public class PlayRoles extends AppCompatActivity {
             }
             items.add(getString(R.string.do_nothing)); // items.add("Do Nothing");
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(getString(R.string.title_thief));
-            builder.setSingleChoiceItems(items.toArray(new String[items.size()]), answer,
-                    new DialogInterface.OnClickListener() {
+            new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.title_thief))
+                    .setSingleChoiceItems(items.toArray(new String[items.size()]), answer,
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    answer = i;
+                                }
+                            })
+                    .setPositiveButton(getString(R.string.yes),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    answered = true;
+                                }
+                            })
+                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            answer = i;
+                        public void onDismiss(DialogInterface dialogInterface) {
+                            if (answered && answer != -1) {
+                                int index = answer;
+                                if (index >= counter) {
+                                    index += 1;
+                                }
+                                stealing = counter;
+                                stolen = index;
+                                stealRole();
+                            } else {
+                                playThief();
+                            }
                         }
-                    });
-            builder.setPositiveButton(getString(R.string.yes),
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            answered = true;
-                        }
-                    });
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialogInterface) {
-                    if (answered && answer != -1) {
-                        int index = answer;
-                        if (index >= counter) {
-                            index += 1;
-                        }
-                        stealing = counter;
-                        stolen = index;
-                        stealRole();
-                    } else {
-                        playThief();
-                    }
-                }
-            });
-            builder.create().show();
+                    })
+                    .show();
         }
     }
 
@@ -399,117 +434,117 @@ public class PlayRoles extends AppCompatActivity {
             message = String.format(getString(R.string.player_was_role_you_are_role), players.get(stolen), role2string(roles.get(stolen)), role2string(roles.get(stolen)));
             // String.format("%s was %s.\nYou are now %s.", players.get(stolen), roles.get(stolen), roles.get(stolen));
         }
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.title_thief));
-        builder.setMessage(message);
-        builder.setPositiveButton(getString(R.string.yes),
-                new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.title_thief))
+                .setMessage(message)
+                .setPositiveButton(getString(R.string.yes),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                played = true;
+                            }
+                        })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        played = true;
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        if (played) {
+                            counter += 1;
+                            confirmed = false;
+                            checked = false;
+                            answered = false;
+                            played = false;
+                            answer = -1;
+                            confirmPlayer();
+                        } else {
+                            stealRole();
+                        }
                     }
-                });
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (played) {
-                    counter += 1;
-                    confirmed = false;
-                    checked = false;
-                    answered = false;
-                    played = false;
-                    answer = -1;
-                    confirmPlayer();
-                } else {
-                    stealRole();
-                }
-            }
-        });
-        builder.create().show();
+                })
+                .show();
     }
 
     private void playHunter() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.title_hunter));
-        builder.setMessage(getString(R.string.message_hunter));
-        builder.setPositiveButton(getString(R.string.yes),
-                new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.title_hunter))
+                .setMessage(getString(R.string.message_hunter))
+                .setPositiveButton(getString(R.string.yes),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                played = true;
+                            }
+                        })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        played = true;
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        if (played) {
+                            counter += 1;
+                            confirmed = false;
+                            checked = false;
+                            played = false;
+                            confirmPlayer();
+                        } else {
+                            playHunter();
+                        }
                     }
-                });
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (played) {
-                    counter += 1;
-                    confirmed = false;
-                    checked = false;
-                    played = false;
-                    confirmPlayer();
-                } else {
-                    playHunter();
-                }
-            }
-        });
-        builder.create().show();
+                })
+                .show();
     }
 
     private void playHangedman() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.title_hangedman));
-        builder.setMessage(getString(R.string.message_hangedman));
-        builder.setPositiveButton(getString(R.string.yes),
-                new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.title_hangedman))
+                .setMessage(getString(R.string.message_hangedman))
+                .setPositiveButton(getString(R.string.yes),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                played = true;
+                            }
+                        })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        played = true;
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        if (played) {
+                            counter += 1;
+                            confirmed = false;
+                            checked = false;
+                            played = false;
+                            confirmPlayer();
+                        } else {
+                            playHangedman();
+                        }
                     }
-                });
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (played) {
-                    counter += 1;
-                    confirmed = false;
-                    checked = false;
-                    played = false;
-                    confirmPlayer();
-                } else {
-                    playHangedman();
-                }
-            }
-        });
-        builder.create().show();
+                })
+                .show();
     }
 
     private void playVillager() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.title_villager));
-        builder.setMessage(getString(R.string.message_villager));
-        builder.setPositiveButton(getString(R.string.yes),
-                new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.title_villager))
+                .setMessage(getString(R.string.message_villager))
+                .setPositiveButton(getString(R.string.yes),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                played = true;
+                            }
+                        })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        played = true;
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        if (played) {
+                            counter += 1;
+                            confirmed = false;
+                            checked = false;
+                            played = false;
+                            confirmPlayer();
+                        } else {
+                            playVillager();
+                        }
                     }
-                });
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (played) {
-                    counter += 1;
-                    confirmed = false;
-                    checked = false;
-                    played = false;
-                    confirmPlayer();
-                } else {
-                    playVillager();
-                }
-            }
-        });
-        builder.create().show();
+                })
+                .show();
     }
 
     private String showWerewolves() {
@@ -560,4 +595,28 @@ public class PlayRoles extends AppCompatActivity {
                 return "Error!";
         }
     }
+
+    private int role2image(String role) {
+        switch (role) {
+            case "werewolf":
+                return R.drawable.werewolf;
+            case "bigwolf":
+                return R.drawable.bigwolf;
+            case "madman":
+                return R.drawable.madman;
+            case "fortuneteller":
+                return R.drawable.fortuneteller;
+            case "thief":
+                return R.drawable.thief;
+            case "hunter":
+                return R.drawable.hunter;
+            case "hangedman":
+                return R.drawable.hangedman;
+            case "villager":
+                return R.drawable.villager;
+            default:
+                return 0;
+        }
+    }
 }
+

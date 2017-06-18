@@ -66,28 +66,28 @@ public class Vote extends AppCompatActivity {
             if (confirmed) {
                 vote();
             } else {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(getString(R.string.title_confirm));
-                builder.setMessage(String.format(getString(R.string.message_confirm), players.get(counter)));
-                builder.setNegativeButton(getString(R.string.no), null);
-                builder.setPositiveButton(getString(R.string.yes),
-                        new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.title_confirm))
+                        .setMessage(String.format(getString(R.string.message_confirm), players.get(counter)))
+                        .setNegativeButton(getString(R.string.no), null)
+                        .setPositiveButton(getString(R.string.yes),
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        confirmed = true;
+                                    }
+                                })
+                        .setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                confirmed = true;
+                            public void onDismiss(DialogInterface dialogInterface) {
+                                if (confirmed) {
+                                    vote();
+                                } else {
+                                    confirmPlayer();
+                                }
                             }
-                        });
-                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialogInterface) {
-                        if (confirmed) {
-                            vote();
-                        } else {
-                            confirmPlayer();
-                        }
-                    }
-                });
-                builder.create().show();
+                        })
+                        .show();
             }
         } else {
             Intent intent = new Intent(this, Result.class);
@@ -111,40 +111,40 @@ public class Vote extends AppCompatActivity {
             }
         }
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.vote));
-        builder.setSingleChoiceItems(items.toArray(new String[items.size()]), answer,
-                new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.vote))
+                .setSingleChoiceItems(items.toArray(new String[items.size()]), answer,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                answer = i;
+                            }
+                        })
+                .setPositiveButton(getString(R.string.yes),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                answered = true;
+                            }
+                        })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        answer = i;
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        if (answered && answer != -1) {
+                            if (answer >= counter) {
+                                answer += 1;
+                            }
+                            votes.add(answer);
+                            confirmed = false;
+                            answered = false;
+                            answer = -1;
+                            counter += 1;
+                            confirmPlayer();
+                        } else {
+                            vote();
+                        }
                     }
-                });
-        builder.setPositiveButton(getString(R.string.yes),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        answered = true;
-                    }
-                });
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                if (answered && answer != -1) {
-                    if (answer >= counter) {
-                        answer += 1;
-                    }
-                    votes.add(answer);
-                    confirmed = false;
-                    answered = false;
-                    answer = -1;
-                    counter += 1;
-                    confirmPlayer();
-                } else {
-                    vote();
-                }
-            }
-        });
-        builder.create().show();
+                })
+                .show();
     }
 }
