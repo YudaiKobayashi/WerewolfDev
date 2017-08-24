@@ -116,6 +116,7 @@ public class PlayRoles extends AppCompatActivity {
 
             new AlertDialog.Builder(this)
                     .setView(imageView)
+                    .setMessage(role2string(roles.get(counter)))
                     .setPositiveButton(getString(R.string.ok),
                             new DialogInterface.OnClickListener() {
                                 @Override
